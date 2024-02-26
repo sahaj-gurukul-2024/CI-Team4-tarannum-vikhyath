@@ -73,16 +73,16 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Access AWS ECR
-        run: aws ecr get-login-password ${ secrets.AWS_REGION } | docker login --username AWS --password-stdin 331061725593.dkr.ecr.ap-south-1.amazonaws.com
+        run: aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 331061725593.dkr.ecr.ap-south-1.amazonaws.com
 
       - name: Build an Image
-        run: docker build -t ci-team4-tarannum-and-vikhyath/${github.sha} .
+        run: docker build -t ci-team4-tarannum-and-vikhyath:latest .
 
       - name: Tag the image
-        run: docker tag ci-team4-tarannum-and-vikhyath/${{github.sha}} 331061725593.dkr.ecr.ap-south-1.amazonaws.com/ci-team4-tarannum-and-vikhyath/${{github.sha}}
+        run: docker tag ci-team4-tarannum-and-vikhyath:latest 331061725593.dkr.ecr.ap-south-1.amazonaws.com/ci-team4-tarannum-and-vikhyath:${{github.sha}}
 
       - name: Push the image
-        run: docker push 331061725593.dkr.ecr.ap-south-1.amazonaws.com/ci-team4-tarannum-and-vikhyath/${{github.sha}}
+        run: docker push 331061725593.dkr.ecr.ap-south-1.amazonaws.com/ci-team4-tarannum-and-vikhyath:${{github.sha}}
 
 
 
