@@ -56,6 +56,11 @@ jobs:
       - name: Generate artifact
         run: ./gradlew build
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: the-artifact
+          path: build/libs/
 
       - name: Download artifact
         uses: actions/download-artifact@v2
