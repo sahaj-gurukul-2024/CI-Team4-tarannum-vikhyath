@@ -14,7 +14,9 @@ jobs:
       - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: "21"
+          java-version: '21'
+          distribution: 'temurin'
+          architecture: x64
 
       - name: Compile code
         run: ./gradlew assemble
@@ -29,7 +31,9 @@ jobs:
       - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: "21"
+          java-version: '21'
+          distribution: 'temurin'
+          architecture: x64
 
       - name: Run unit tests
         run: ./gradlew test
