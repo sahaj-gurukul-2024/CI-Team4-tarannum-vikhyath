@@ -65,18 +65,18 @@ jobs:
       - name: Configure AWS
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${ secrets.AWS_ACCESS_KEY }
+          aws-secret-access-key: ${ secrets.AWS_SECRET_KEY }
+          aws-region: ${ secrets.AWS_REGION }
 
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Access AWS ECR
-        run: aws ecr get-login-password ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin 331061725593.dkr.ecr.ap-south-1.amazonaws.com
+        run: aws ecr get-login-password ${ secrets.AWS_REGION } | docker login --username AWS --password-stdin 331061725593.dkr.ecr.ap-south-1.amazonaws.com
 
       - name: Build an Image
-        run: docker build -t ci-team4-tarannum-and-vikhyath/${{github.sha}} .
+        run: docker build -t ci-team4-tarannum-and-vikhyath/${github.sha} .
 
       - name: Tag the image
         run: docker tag ci-team4-tarannum-and-vikhyath/${{github.sha}} 331061725593.dkr.ecr.ap-south-1.amazonaws.com/ci-team4-tarannum-and-vikhyath/${{github.sha}}
