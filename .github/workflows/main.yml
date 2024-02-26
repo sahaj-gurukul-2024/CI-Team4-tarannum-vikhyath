@@ -53,14 +53,20 @@ jobs:
           architecture: x64
 
 
-    #  - name: Generate artifact
-     #   run: ./gradlew build
+      - name: Generate artifact
+        run: ./gradlew build
 
-#      - name: Upload artifact
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: the-artifact
-#          path: build/libs/
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: the-artifact
+          path: build/libs/team4-office-lunch-management-0.1-all.jar
+
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: the-artifact
+          path: .
 
       - name: Configure AWS
         uses: aws-actions/configure-aws-credentials@v4
