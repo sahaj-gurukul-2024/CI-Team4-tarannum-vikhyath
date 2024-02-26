@@ -76,7 +76,7 @@ jobs:
         run: aws ecr get-login-password ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin 331061725593.dkr.ecr.ap-south-1.amazonaws.com
 
       - name: Build an Image
-        run: docker build -t ci-team4-tarannum-and-vikhyath/$GIT_SHA_TAG .
+        run: docker build -t ci-team4-tarannum-and-vikhyath/${{github.sha}} .
 
       - name: Tag the image
         run: docker tag ci-team4-tarannum-and-vikhyath/${{github.sha}} 331061725593.dkr.ecr.ap-south-1.amazonaws.com/ci-team4-tarannum-and-vikhyath/${{github.sha}}
